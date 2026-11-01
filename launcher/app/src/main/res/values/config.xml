@@ -7,6 +7,9 @@
 -->
 <resources>
 
+    <!-- Personal UPT24K network card. No third-party SDK or background service. -->
+    <bool name="show_network_card">true</bool>
+
     <!-- Tried in order when no standard settings handler is usable; each package must also be visible
          through <queries> in the manifest. -->
     <string-array name="settings_fallback_components" translatable="false">
@@ -17,10 +20,10 @@
 
     <!-- Apps pinned to the dock row at the bottom, in this order. Missing apps are skipped. -->
     <string-array name="dock_apps">
-        <item>com.netflix.ninja</item>
+        <item>com.ita.livetv.tsd</item>
+        <item>org.smarttube.stable</item>
+        <item>it.rainet.androidtv</item>
         <item>com.amazon.amazonvideo.livingroom</item>
-        <item>com.google.android.youtube.tv</item>
-        <item>in.startv.hotstar</item>
     </string-array>
     <!-- With fewer dock_apps than columns (or a dock app that is not installed), the free dock slots take
          the first grid apps, so the dock never shows a gap. false leaves them empty (#162); a theme can
@@ -34,7 +37,7 @@
     </string-array>
 
     <!-- The TV's Live TV / tuner app, offered at the end of the Inputs menu. Leave empty to omit. -->
-    <string name="live_tv_package" translatable="false">com.mediatek.wwtv.tvcenter</string>
+    <string name="live_tv_package" translatable="false">com.ita.livetv.tsd</string>
 
     <!-- Open the Live TV app above the first time Home comes up after the TV is switched on, for sets that are
          mostly used for broadcast TV. Once per boot: Home after that stays Home. Can also be set with
@@ -445,7 +448,7 @@
          slides with no bounce and settles within 5 frames, every animation lasts 90 ms or less, names, top
          shelf, glow and highlight appear instead of fading, and there is no tile entrance. Set it
          here or with "reduced_motion": true in a theme's config.json; false keeps the normal motion. -->
-    <bool name="reduced_motion">false</bool>
+    <bool name="reduced_motion">true</bool>
 
     <!-- The glass highlight springs past the tile it moves to and the focused tile zooms past its size
          before settling. false: both go straight there, with no bounce, while scrolling stays smooth

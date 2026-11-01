@@ -1,0 +1,40 @@
+{
+  "baseRevision": "6e8615eb0be0e843ceeebedae246d69f3e0a88d7",
+  "testedDevice": "TELE System UPT24K",
+  "androidVersion": "12",
+  "build": {
+    "tests": {
+      "tests": 330,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "lintErrors": 0,
+    "apkBytes": 609777,
+    "sha256": "09e539b075da1d18d34e40c1cb2c38bfd77a8edb8d384eedb0454c739f0fe4b7",
+    "sameSigningCertificate": true,
+    "upstreamApkLimitBytes": 589824
+  },
+  "deviceChecks": {
+    "stockHomeDefault": true,
+    "homeHelperBound": true,
+    "keyFilter": false,
+    "manualOnly": true,
+    "cancelOnLeavingHome": true,
+    "dpadNavigation": true
+  },
+  "networkSample": {
+    "downloadMbps": 56.5,
+    "uploadMbps": 42.9,
+    "userReportedSameDeviceOoklaDownloadMbps": 52,
+    "server": "Roma",
+    "method": "LibreSpeed HTTPS, four parallel streams",
+    "payloadLimitBytes": 41943040
+  },
+  "upstreamSizeGatePassed": false,
+  "limitations": [
+    "Single network sample; not a guarantee of future bandwidth.",
+    "Home redirection with stock Home already visible after full reboot is not qualified.",
+    "Private signing key, APK, device dumps and screenshots are kept outside Git."
+  ]
+}

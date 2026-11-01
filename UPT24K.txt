@@ -1,0 +1,75 @@
+Android TV UPT24K - snapshot del launcher personale
+
+Base: Gathin23/cleanyourtv, revisione 6e8615eb0be0e843ceeebedae246d69f3e0a88d7.
+Sorgenti Android: launcher/.
+Profilo Home ripristinabile, privo di indirizzi e identificativi: profiles/upt24k/config.json.
+Riscontro della build e della prova sul decoder: profiles/upt24k/validation.json.
+
+Versione funzionante
+
+- Dock: Canali TV, SmartTube, RaiPlay, Prime Video.
+- CPU con storico reale, RAM e disco dati in tre schede grafiche.
+- IP locale e pubblico, paese con bandiera e operatore; ipwho.is via HTTPS.
+  Cache in memoria di cinque minuti, aggiornata mentre Home e visibile.
+- Download/upload, ping HTTP e jitter: test manuale LibreSpeed a quattro
+  connessioni, server Roma/Francoforte selezionato per latenza HTTPS.
+  Limite complessivo: 32 MiB download e 8 MiB upload (circa 42 MB di payload).
+  OK avvia/interrompe; uscire dalla Home annulla tutti i trasferimenti.
+  Risultati in memoria con orario, senza invio a servizi di telemetria.
+
+Home e telecomando
+
+Il launcher stock com.google.android.tvlauncher deve restare abilitato e
+predefinito su questo decoder ZTE. HomeKeyService osserva i cambi di finestra
+e apre il launcher personale; key_filter=false preserva la ripetizione del volume.
+Il reindirizzamento quando la Home stock e gia visibile dopo un riavvio completo
+resta un limite noto: questo snapshot non lo dichiara risolto.
+
+Build e ripristino
+
+Prerequisiti usati: JDK 21, Android SDK platform 34 e build-tools 34.0.0.
+Il wrapper scarica Gradle 8.9. Il progetto usa il permesso INTERNET, con traffico
+in chiaro disabilitato e senza nuove dipendenze rispetto alla base.
+
+Dalla root, con JAVA_HOME impostato al JDK 21 e SDK nella cartella locale:
+
+    cd launcher
+    ANDROID_HOME="$PWD/../.local/android-sdk" \
+    ANDROID_USER_HOME="$PWD/../.local/android-user" \
+    GRADLE_USER_HOME="$PWD/../.local/gradle" \
+    ./gradlew --no-daemon testReleaseUnitTest lintRelease assembleRelease
+
+APK: launcher/app/build/outputs/apk/release/app-release.apk.
+La chiave originale .local/android-user/debug.keystore deve essere conservata
+separatamente: Git non la contiene e non puo ricrearla. Serve per aggiornare
+l'app gia installata con la stessa firma; non sostituirla con una nuova chiave.
+
+Per aggiornare la copia gia installata, lasciando la Home stock predefinita:
+
+    adb install -r launcher/app/build/outputs/apk/release/app-release.apk
+
+L'aggiornamento puo richiedere di riabilitare HomeKeyService nelle impostazioni
+di accessibilita. Dopo l'installazione, il profilo si puo applicare dalla root:
+
+    TV_HOST="IP_DEL_DECODER" bash tools/theme.sh profiles/upt24k
+
+Le dipendenze degli strumenti Python sono fissate in tools/requirements-local.lock.txt.
+Gli strumenti originali e le loro istruzioni sono in tools/.
+
+Verifiche dello snapshot
+
+330 test superati; lint senza errori; firma APK verificata.
+Prova reale della card sul decoder: 56,5 Mbps download e 42,9 Mbps upload,
+rispetto ai 52 Mbps download Ookla riferiti sul browser dello stesso decoder.
+Verificati navigazione D-pad, interruzione uscendo dalla Home e collegamento
+di HomeKeyService con key_filter=false. Le velocita sono campioni puntuali.
+APK personale: 609777 byte; supera il limite upstream di 589824 byte.
+Non costituisce una qualificazione della CI upstream.
+
+Materiali locali esclusi da Git
+
+.local/: SDK, cache Gradle e chiave di firma; tools/venv/: ambiente Python.
+backup/: APK e configurazioni precedenti; shots/: screenshot privati.
+work/: inventario, diagnostica e prove dettagliate, script locali di build,
+installazione e ripristino. Questi materiali possono contenere dati personali.
+Il commit e uno snapshot dei sorgenti e del profilo, non una copia del decoder.

@@ -37,8 +37,11 @@
     <string name="shamsi_month_bahman">Bahman</string>
     <string name="shamsi_month_esfand">Esfand</string>
     <string name="stats_cpu">CPU %1$d%%</string>
-    <string name="stats_memory">Memoria: %1$d / %2$d MB</string>
+    <string name="stats_memory">RAM %1$d/%2$d MB</string>
     <string name="stats_storage">Spazio: %1$s liberi</string>
+    <string name="stats_storage_usage">Disco %1$s / %2$s</string>
+    <string name="resource_disk">DISCO</string>
+    <string name="resource_recent">CARICO RECENTE</string>
     <string name="storage_gb_whole">%1$.0f GB</string>
     <string name="storage_gb_decimal">%1$.1f GB</string>
     <string name="dream_name">Orologio</string>
@@ -149,4 +152,32 @@
     <string name="clock_format_system">Sistema</string>
     <string name="clock_format_12">12 ore</string>
     <string name="clock_format_24">24 ore</string>
+
+    <!-- UPT24K personal network card. Country names come from the device locale. -->
+    <string name="network_title">Connessione Internet</string>
+    <string name="network_local">LAN · %1$s</string>
+    <string name="network_offline">Internet non disponibile · OK per riprovare</string>
+    <string name="network_loading">Verifica IP pubblico…</string>
+    <string name="network_failed">Servizio non disponibile · riprova più tardi</string>
+    <string name="network_stale">Dato precedente · aggiornamento non disponibile</string>
+    <string name="network_waiting">In attesa di aggiornamento · ipwho.is</string>
+    <string name="network_updated">Aggiornato %1$s · ipwho.is · OK aggiorna</string>
+    <string name="network_description">Internet: %1$s. IP pubblico: %2$s. IP locale: %3$s. Operatore: %4$s. %5$s. Premi OK per aggiornare.</string>
+
+    <!-- Personal UPT24K compact IP and manual speed cards. -->
+    <string name="network_updated_compact">Agg. %1$s · OK aggiorna</string>
+    <string name="speed_title">TEST RETE</string>
+    <string name="speed_ready">LibreSpeed · OK avvia · ≤42 MB</string>
+    <string name="speed_offline">Offline · OK riprova</string>
+    <string name="speed_cancelled">Interrotto · OK riprova</string>
+    <string name="speed_failed">Test non riuscito · OK riprova</string>
+    <string name="speed_measuring_ping">Latenza HTTP · OK interrompi</string>
+    <string name="speed_measuring_down">Download · OK interrompi</string>
+    <string name="speed_measuring_up">Upload · OK interrompi</string>
+    <string name="speed_finished">%2$s %1$s · OK ripeti</string>
+    <string name="speed_ping">HTTP %1$s ms</string>
+    <string name="speed_jitter">Jitter %1$s ms</string>
+    <string name="speed_description">Test rete LibreSpeed parallelo. Download %1$s megabit al secondo, upload %2$s megabit al secondo, ping HTTP %3$s millisecondi, jitter %4$s millisecondi. %5$s. OK avvia o interrompe il test.</string>
+    <string name="speed_download_label">DOWNLOAD</string>
+    <string name="speed_upload_label">UPLOAD</string>
 </resources>

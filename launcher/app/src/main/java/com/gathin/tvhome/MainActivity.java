@@ -195,7 +195,9 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
     private TextView lunarDate;
     private boolean lunar;
     private int lunarOffset;
-    private TextView stats;
+    private View stats;
+    private NetworkSummaryController networkSummary;
+    private SpeedTestController speedTest;
     private List<RaceWeekend.Race> raceCalendar;
     private View racePanel;
     private TextView raceKicker, raceHeadline, raceSessions;
@@ -566,6 +568,14 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
         btnWifi = findViewById(R.id.btnWifi);
         shamsiDate = findViewById(R.id.shamsiDate);
         stats = findViewById(R.id.stats);
+        View networkCard = findViewById(R.id.networkCard);
+        if (networkCard != null && getResources().getBoolean(R.bool.show_network_card)) {
+            networkSummary = new NetworkSummaryController(this, networkCard);
+            SpeedTestCardView speedCard = findViewById(R.id.speedCard);
+            if (speedCard != null) speedTest = new SpeedTestController(this, speedCard);
+        } else if (networkCard != null) {
+            findViewById(R.id.networkPanels).setVisibility(View.GONE);
+        }
         raceCalendar = cfg.raceCalendar;
         racePanel = findViewById(R.id.racePanel);
         raceKicker = findViewById(R.id.raceKicker);
@@ -900,6 +910,9 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
             int firstButton = btnInputs.getVisibility() == View.VISIBLE ? R.id.btnInputs : firstTopButton().getId();
             int leftButton = rtlMenuBar ? R.id.btnSettings : firstButton;
             int rightButton = rtlMenuBar ? firstButton : R.id.btnSettings;
+            if (keyCode == KeyEvent.KEYCODE_DPAD_LEFT && v.getId() == leftButton && networkSummary != null) {
+                return findViewById(speedTest != null ? R.id.speedCard : R.id.networkCard).requestFocus();
+            }
             if (keyCode == KeyEvent.KEYCODE_DPAD_LEFT) return v.getId() == leftButton;
             return keyCode == KeyEvent.KEYCODE_DPAD_RIGHT && v.getId() == rightButton;
         };
@@ -1124,6 +1137,8 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
             pillsShown = true;
         }
         if (showStats) startStats();
+        if (networkSummary != null) networkSummary.start();
+        if (speedTest != null) speedTest.start();
         if (gameDay != null) gameDay.start();
         sky.update();
         wallpaperPlayer.start();
@@ -1309,6 +1324,8 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
         handler.removeCallbacks(openWhenOnline);
         startPending = null;   // leaving Home before the network came back: the boot's app stays closed
         stopStats();
+        if (networkSummary != null) networkSummary.stop();
+        if (speedTest != null) speedTest.stop();
         if (gameDay != null) gameDay.stop();
         handler.removeCallbacks(turnTick);
         if (lamp != null) lamp.stop();
@@ -1369,6 +1386,8 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
         RemoteKeys.release(this);
         cancelHoldOk();
         if (gameDay != null) gameDay.shutdown();
+        if (networkSummary != null) networkSummary.close();
+        if (speedTest != null) speedTest.close();
         unregisterReceiver(packageReceiver);
         if (openOnStartOnWake) unregisterReceiver(wakeReceiver);
         wallpaperPlayer.close();
@@ -2242,6 +2261,7 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
     private void startStats() {
         if (statsThread != null) return;
         stats.setVisibility(View.VISIBLE);
+        if (stats instanceof ResourceSummaryView) ((ResourceSummaryView) stats).resetHistory();
         cpuTotalPrev = -1;
         idlePrev = -1;
         procStatDead = false;
@@ -2255,9 +2275,14 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
             @Override
             public void run() {
                 if (statsBg != bg) return;
-                String line = readStatsLine();
+                ResourceSummaryView.Reading reading = readStatsReading();
                 handler.post(() -> {
-                    if (showStats && stats != null && statsBg == bg) stats.setText(line);
+                    if (reading == null || !showStats || stats == null || statsBg != bg) return;
+                    if (stats instanceof ResourceSummaryView) {
+                        ((ResourceSummaryView) stats).setReading(reading);
+                    } else if (stats instanceof TextView) {
+                        ((TextView) stats).setText(reading.description);
+                    }
                 });
                 if (statsBg == bg) bg.postDelayed(this, STATS_MS);
             }
@@ -2275,20 +2300,20 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
         if (!showStats) stats.setVisibility(View.GONE);
     }
 
-    /** One quiet line, e.g. "CPU 8%  ·  Memory 430 MB free  ·  Storage 3.1 GB free". Runs off the main thread. */
+    /** One quiet line with CPU load and used/total RAM and data storage. Runs off the main thread. */
     private static void appendStat(StringBuilder line, String part) {
         if (line.length() > 0) line.append("  ·  ");
         line.append(part);
     }
 
-    private String readStatsLine() {
+    private ResourceSummaryView.Reading readStatsReading() {
         int cpu = cpuPercent();
         if (cpu < 0) {
             try {
                 Thread.sleep(200);             // second sample, so the first line already has a CPU figure
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
-                return "";
+                return null;
             }
             cpu = cpuPercent();
         }
@@ -2298,9 +2323,16 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
         if (cpu >= 0) line.append(getString(R.string.stats_cpu, cpu));
         long[] mem = memUsedOfTotalMb();
         if (mem != null) appendStat(line, getString(R.string.stats_memory, mem[0], mem[1]));
-        String free = formatGb(getResources(), Environment.getDataDirectory().getFreeSpace());
-        if (!free.isEmpty()) appendStat(line, getString(R.string.stats_storage, free));
-        return StatsText.forLocale(line.toString(), getResources().getConfiguration().getLocales().get(0));
+        java.io.File storage = Environment.getDataDirectory();
+        long totalBytes = storage.getTotalSpace();
+        long usedBytes = Math.max(0, totalBytes - storage.getUsableSpace());
+        if (totalBytes > 0) {
+            appendStat(line, getString(R.string.stats_storage_usage,
+                    formatGb(getResources(), usedBytes), formatGb(getResources(), totalBytes)));
+        }
+        return new ResourceSummaryView.Reading(cpu, mem == null ? -1 : mem[0],
+                mem == null ? 0 : mem[1], usedBytes, totalBytes,
+                StatsText.forLocale(line.toString(), getResources().getConfiguration().getLocales().get(0)));
     }
 
     // -1: need another sample. -2: this source cannot be read (Android 9 hides /proc/stat from apps).
@@ -2404,7 +2436,7 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
     }
 
     private static String formatGb(Resources res, long bytes) {
-        if (bytes <= 0) return "";
+        if (bytes < 0) return "";
         double gb = bytes / (1024.0 * 1024 * 1024);
         return gb >= 10 ? res.getString(R.string.storage_gb_whole, gb)
                 : res.getString(R.string.storage_gb_decimal, gb);

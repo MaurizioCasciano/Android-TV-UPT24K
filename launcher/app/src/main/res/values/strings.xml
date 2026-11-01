@@ -39,8 +39,14 @@
     <string name="shamsi_month_bahman">Bahman</string>
     <string name="shamsi_month_esfand">Esfand</string>
     <string name="stats_cpu">CPU %1$d%%</string>
-    <string name="stats_memory">Memory %1$d / %2$d MB</string>
+    <string name="stats_memory">RAM %1$d/%2$d MB</string>
     <string name="stats_storage">Storage %1$s free</string>
+    <string name="stats_storage_usage">Disk %1$s / %2$s</string>
+    <string name="resource_cpu" translatable="false">CPU</string>
+    <string name="resource_ram" translatable="false">RAM</string>
+    <string name="resource_disk">DISK</string>
+    <string name="resource_recent">RECENT LOAD</string>
+    <string name="resource_usage_detail" translatable="false">%1$.1f / %2$.1f GB</string>
     <string name="storage_gb_whole">%1$.0f GB</string>
     <string name="storage_gb_decimal">%1$.1f GB</string>
     <string name="dream_name">Clock</string>
@@ -158,4 +164,33 @@
     <string name="clock_format_system">System</string>
     <string name="clock_format_12">12-hour</string>
     <string name="clock_format_24">24-hour</string>
+
+    <!-- UPT24K personal network card. Country names come from the device locale. -->
+    <string name="network_title">Internet connection</string>
+    <string name="network_local">LAN · %1$s</string>
+    <string name="network_offline">Internet unavailable · OK to retry</string>
+    <string name="network_loading">Checking public IP…</string>
+    <string name="network_failed">Lookup unavailable · retry later</string>
+    <string name="network_stale">Previous reading · update unavailable</string>
+    <string name="network_waiting">Waiting to update · ipwho.is</string>
+    <string name="network_updated">Updated %1$s · ipwho.is · OK to refresh</string>
+    <string name="network_description">Internet: %1$s. Public IP: %2$s. Local IP: %3$s. Network: %4$s. %5$s. Press OK to refresh.</string>
+    <string name="network_refresh_icon" translatable="false">↻</string>
+
+    <!-- Personal UPT24K compact IP and manual speed cards. -->
+    <string name="network_updated_compact">Updated %1$s · OK refresh</string>
+    <string name="speed_title">NETWORK TEST</string>
+    <string name="speed_ready">LibreSpeed · OK start · ≤42 MB</string>
+    <string name="speed_offline">No Internet · OK retry</string>
+    <string name="speed_cancelled">Stopped · OK restart</string>
+    <string name="speed_failed">Test failed · OK retry</string>
+    <string name="speed_measuring_ping">HTTP latency · OK stop</string>
+    <string name="speed_measuring_down">Download · OK stop</string>
+    <string name="speed_measuring_up">Upload · OK stop</string>
+    <string name="speed_finished">%2$s %1$s · OK repeat</string>
+    <string name="speed_ping">HTTP %1$s ms</string>
+    <string name="speed_jitter">Jitter %1$s ms</string>
+    <string name="speed_description">LibreSpeed parallel network test. Download %1$s megabits per second, upload %2$s megabits per second, HTTP ping %3$s milliseconds, jitter %4$s milliseconds. %5$s. OK starts or stops the test.</string>
+    <string name="speed_download_label">DOWNLOAD</string>
+    <string name="speed_upload_label">UPLOAD</string>
 </resources>
