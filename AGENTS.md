@@ -1,8 +1,8 @@
 # AGENTS.md
 
-> UPT24K derivative: read [docs/upt24k.md](docs/upt24k.md) first. Its Home-safety,
-> HTTPS-network and APK-size exceptions apply here; the rules below govern upstream
-> submissions. Keep stock Home enabled/default and `key_filter=false`.
+> UPT24K fork: read [device guide](docs/devices/tele-system-upt24k.md).
+> Its Home-safety, HTTPS-network and APK-size exceptions apply here; rules below
+> govern upstream submissions. Keep stock Home enabled/default and `key_filter=false`.
 
 
 Instructions for coding agents (Claude Code, Codex, Gemini CLI, Cursor, Copilot and others) working in

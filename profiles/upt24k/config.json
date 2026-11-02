@@ -1,5 +1,7 @@
 {
   "stock_home_redirect": "com.google.android.tvlauncher",
   "key_filter": false,
-  "show_stats": true
+  "show_stats": true,
+  "wifi_status_color": true,
+  "wifi_status_warnings": true
 }

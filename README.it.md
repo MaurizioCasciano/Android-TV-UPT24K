@@ -7,7 +7,7 @@ per TELE System UPT24K, con cronologia e [licenza MIT](LICENSE) originali conser
 Questa versione aggiunge risorse CPU/RAM/disco, informazioni IP/paese/operatore
 e Speed test automatico con ultimo risultato salvato sul decoder.
 Per build, traffico verso servizi esterni e ripristino leggi
-[la guida UPT24K](docs/upt24k.md) e [le note italiane](UPT24K.txt).
+[la guida UPT24K](docs/devices/tele-system-upt24k.md) e [le note italiane](UPT24K.txt).
 
 **Su UPT24K il launcher stock deve restare abilitato e predefinito.**
 Applica `profiles/upt24k` prima di abilitare il servizio Home: le istruzioni

@@ -9,7 +9,7 @@ The UPT24K version adds CPU/RAM/storage cards, IP/country/operator information,
 and a parallel LibreSpeed card with automatic foreground testing and a locally
 saved last result. It has been tested on Android 12, firmware `V84511302.2033`.
 
-**Start with [UPT24K build, privacy and recovery](docs/upt24k.md).** That guide
+**Start with [UPT24K build, privacy and recovery](docs/devices/tele-system-upt24k.md).** That guide
 lists every added network destination, automatic-test data usage, signing-key
 requirements and the device-specific Home setup. [UPT24K.txt](UPT24K.txt) is the
 Italian snapshot/recovery note; [validation.json](profiles/upt24k/validation.json)

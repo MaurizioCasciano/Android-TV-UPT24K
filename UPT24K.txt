@@ -2,7 +2,7 @@ Android TV UPT24K - snapshot del launcher personale
 
 Base: Gathin23/cleanyourtv, revisione 6e8615eb0be0e843ceeebedae246d69f3e0a88d7.
 Sorgenti Android: launcher/.
-Presentazione: README.md. Build, privacy e recupero: docs/upt24k.md.
+Presentazione: README.md. Build, privacy e recupero: docs/devices/tele-system-upt24k.md.
 Profilo Home ripristinabile, privo di indirizzi e identificativi: profiles/upt24k/config.json.
 Riscontro della build e della prova sul decoder: profiles/upt24k/validation.json.
 
@@ -60,7 +60,7 @@ di accessibilita. Dopo l'installazione, il profilo si puo applicare dalla root:
 Le dipendenze degli strumenti Python sono fissate in tools/requirements-local.lock.txt.
 Gli strumenti originali e le loro istruzioni sono in tools/.
 
-Verifiche dello snapshot
+Verifiche dello snapshot iniziale
 
 341 test superati; lint senza errori; firma APK verificata.
 Il motore parallelo e stato confrontato sul decoder con Ookla (56,5 Mbps contro

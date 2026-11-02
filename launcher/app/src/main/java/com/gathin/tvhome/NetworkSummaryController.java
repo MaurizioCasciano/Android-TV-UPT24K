@@ -10,7 +10,6 @@ import android.net.NetworkCapabilities;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.SystemClock;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.TextView;
 
@@ -185,7 +184,7 @@ final class NetworkSummaryController {
             JSONObject json = new JSONObject(body.toString(StandardCharsets.UTF_8.name()));
             String ip = clean(json.optString("ip"));
             String cc = clean(json.optString("country_code")).toUpperCase(Locale.ROOT);
-            if (!json.optBoolean("success") || !Patterns.IP_ADDRESS.matcher(ip).matches()
+            if (!json.optBoolean("success") || !NumericIpAddress.isValid(ip)
                     || !cc.matches("[A-Z]{2}")) throw new java.io.IOException("Invalid lookup");
             JSONObject net = json.optJSONObject("connection");
             String isp = net == null ? "" : clean(net.optString("isp"));
