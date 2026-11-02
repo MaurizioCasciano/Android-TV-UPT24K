@@ -1,3 +1,23 @@
+# Android-TV-UPT24K
+
+Adattamento personale di [CleanYourTV di Gathin](https://github.com/Gathin23/cleanyourtv)
+per TELE System UPT24K, con cronologia e [licenza MIT](LICENSE) originali conservate.
+È un fork registrato su GitHub con modifiche personali, non una release ufficiale di CleanYourTV.
+
+Questa versione aggiunge risorse CPU/RAM/disco, informazioni IP/paese/operatore
+e Speed test automatico con ultimo risultato salvato sul decoder.
+Per build, traffico verso servizi esterni e ripristino leggi
+[la guida UPT24K](docs/upt24k.md) e [le note italiane](UPT24K.txt).
+
+**Su UPT24K il launcher stock deve restare abilitato e predefinito.**
+Applica `profiles/upt24k` prima di abilitare il servizio Home: le istruzioni
+originali per sostituire il launcher non valgono per questo decoder.
+
+---
+
+La traduzione originale qui sotto descrive CleanYourTV upstream. Le affermazioni
+su assenza di rete, dimensione APK e installazione non descrivono questo adattamento.
+
 
 <p align="center">
   <a href="https://cleanyour.tv"><img src="docs/banner.png" alt="CleanYourTV: restituisci alla tua TV una schermata Home pulita" width="800"></a>

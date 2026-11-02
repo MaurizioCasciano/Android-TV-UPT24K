@@ -2,6 +2,7 @@ Android TV UPT24K - snapshot del launcher personale
 
 Base: Gathin23/cleanyourtv, revisione 6e8615eb0be0e843ceeebedae246d69f3e0a88d7.
 Sorgenti Android: launcher/.
+Presentazione: README.md. Build, privacy e recupero: docs/upt24k.md.
 Profilo Home ripristinabile, privo di indirizzi e identificativi: profiles/upt24k/config.json.
 Riscontro della build e della prova sul decoder: profiles/upt24k/validation.json.
 

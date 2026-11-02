@@ -1,3 +1,38 @@
+# Android-TV-UPT24K
+
+Personal TELE System UPT24K launcher derived from
+[CleanYourTV by Gathin](https://github.com/Gathin23/cleanyourtv), with the original
+Git history and [MIT licence](LICENSE) retained. This is a registered GitHub
+fork with personal adaptations, not an official CleanYourTV release.
+
+The UPT24K version adds CPU/RAM/storage cards, IP/country/operator information,
+and a parallel LibreSpeed card with automatic foreground testing and a locally
+saved last result. It has been tested on Android 12, firmware `V84511302.2033`.
+
+**Start with [UPT24K build, privacy and recovery](docs/upt24k.md).** That guide
+lists every added network destination, automatic-test data usage, signing-key
+requirements and the device-specific Home setup. [UPT24K.txt](UPT24K.txt) is the
+Italian snapshot/recovery note; [validation.json](profiles/upt24k/validation.json)
+records the tested build.
+
+On this decoder, **keep the stock launcher enabled and the default Home**.
+Install alongside it and apply `profiles/upt24k` before enabling the Home helper.
+The generic takeover instructions below do not apply to this device.
+
+Unlike the original reference launcher, this adaptation uses the Internet for
+IP lookup and speed testing (up to 40 MiB of payload per test, plus overhead).
+Third-party servers see the request source IP. No analytics SDK or result-sharing
+API was added. Device backups, screenshots, SDK files and private keys stay local.
+
+---
+
+## Original CleanYourTV reference documentation
+
+The following text is retained from upstream. Its no-network, APK-size,
+compatibility and installation claims describe the original reference project;
+use the UPT24K guide above for this adaptation. The linked translations below
+are also upstream reference material.
+
 <p align="center">
   <a href="https://cleanyour.tv"><img src="https://raw.githubusercontent.com/Gathin23/cleanyourtv/main/docs/banner.png" alt="CleanYourTV. Your TV, minus the ads. Strip the bloatware from any Android TV or Google TV over Wi-Fi and replace the ad-filled home screen with a clean launcher that looks like an Apple TV. No root, no cable, nothing uninstalled, and a one-line restore." width="800"></a>
 </p>

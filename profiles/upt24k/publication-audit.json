@@ -1,0 +1,82 @@
+{
+  "reviewedCommit": "ee9d03ce3bccfed5bf3f1e3f3781be3a2943a878",
+  "upstreamBase": "6e8615eb0be0e843ceeebedae246d69f3e0a88d7",
+  "scope": "All reachable local Git refs, including the complete published upt24k-local history; pending publication documentation reviewed separately.",
+  "reachableCommits": 4734,
+  "reachableBlobs": 11190,
+  "reachableBlobBytes": 347495675,
+  "secretScanner": {
+    "name": "Gitleaks",
+    "version": "8.30.1",
+    "releaseArchiveSha256Verified": true,
+    "defaultRules": true,
+    "inlineAllowCommentsIgnored": true,
+    "reportedDiffCommits": 2815,
+    "findings": 2,
+    "confirmedSecrets": 0,
+    "reviewedFalsePositives": "Two inherited XGIMI comments about global remote keys and picture/sound adaptation.",
+    "currentSourceSnapshotFindings": 2,
+    "currentSourceSnapshotConfirmedSecrets": 0
+  },
+  "additionalChecks": {
+    "trackedSigningStoresOrApks": 0,
+    "ownBackupsScreenshotsKeysInHistory": 0,
+    "inheritedHistoricalPackageLists": 5,
+    "keyMarkersAreInheritedTestStubs": true,
+    "knownDecoderAddressAbsentFromOwnHistory": true,
+    "inheritedExampleAddressCoincidence": 1,
+    "upstreamLicenseAndFontLicenseRetained": true,
+    "githubBranches": [
+      "upt24k-local"
+    ],
+    "githubTags": 0,
+    "githubReleases": 0,
+    "githubWorkflowRuns": 0,
+    "githubIssuesOrPullRequests": 0
+  },
+  "authorMetadata": "Original commit author names and email addresses are retained, including the owner identity on the personal commits. They become visible with the history.",
+  "limits": [
+    "Pattern-based scanning cannot prove absence of all secrets or personal information.",
+    "Inherited upstream image contents were not individually inspected; no personal decoder screenshots were added.",
+    "The checked app exceeds the original upstream APK size gate; no full upstream CI qualification is claimed."
+  ],
+  "visibility": "Private at review; no visibility change or upstream submission performed.",
+  "validation": {
+    "pythonSuite": {
+      "tests": 2743,
+      "failures": 50,
+      "skipped": 49,
+      "result": "not passing",
+      "note": "Initial run included two AGENTS size failures introduced by the first documentation draft, since corrected and all 12 AGENTS checks passed. Other failures include existing Hebrew/profile/resource integration gaps, an argparse usage-name mismatch and local ignored-workspace interference."
+    },
+    "agentsChecksAfterCorrection": {
+      "tests": 12,
+      "failures": 0
+    },
+    "launcherSourceChangedByPublicationPreparation": false,
+    "cleanSourceRecoveryReferenceChecks": {
+      "tests": 28,
+      "failures": 0
+    },
+    "confirmedPreexistingIntegrationFindings": {
+      "hebrewResources": 43,
+      "profileFolderPolicy": 1,
+      "resourceSwitchDocumentationPolicy": 1,
+      "argparseUsageNameUnderPython314": 1
+    },
+    "ignoredLocalWorkspaceInterferenceFindings": 2
+  },
+  "publication": {
+    "repository": "MaurizioCasciano/Android-TV-UPT24K",
+    "repositoryId": 1442142659,
+    "public": true,
+    "githubFork": true,
+    "parent": "Gathin23/cleanyourtv",
+    "method": "Reused the existing public CleanYourTV fork and renamed it; original branches and tags retained.",
+    "preservedExistingForkRefs": 23,
+    "privateStandaloneBackup": "MaurizioCasciano/Android-TV-UPT24K-standalone-backup",
+    "backupRepositoryId": 1442259873,
+    "branchToPublish": "upt24k-local",
+    "upstreamIssueOrPullRequestSubmitted": false
+  }
+}

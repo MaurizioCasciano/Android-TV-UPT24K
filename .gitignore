@@ -24,3 +24,11 @@ launcher/replay_pid*.log
 
 # Local SDK, build caches and signing key.
 /.local/
+
+# Signing identities and local connection/environment files are never public assets.
+*.keystore
+*.jks
+/adbkey
+/adbkey.pub
+/.env
+/.env.*
