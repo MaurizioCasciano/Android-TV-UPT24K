@@ -4,14 +4,14 @@
   "androidVersion": "12",
   "build": {
     "tests": {
-      "tests": 330,
+      "tests": 341,
       "failures": 0,
       "errors": 0,
       "skipped": 0
     },
     "lintErrors": 0,
-    "apkBytes": 609777,
-    "sha256": "09e539b075da1d18d34e40c1cb2c38bfd77a8edb8d384eedb0454c739f0fe4b7",
+    "apkBytes": 613241,
+    "sha256": "3a96a90d98c3384a4205d888d3eb62bb4a4fd6568f2e011e30dd3c57dd3c4ccf",
     "sameSigningCertificate": true,
     "upstreamApkLimitBytes": 589824
   },
@@ -19,13 +19,15 @@
     "stockHomeDefault": true,
     "homeHelperBound": true,
     "keyFilter": false,
-    "manualOnly": true,
     "cancelOnLeavingHome": true,
-    "dpadNavigation": true
+    "dpadNavigation": true,
+    "autoStartOnValidatedInternet": true,
+    "lastResultSurvivesProcessRestart": true,
+    "noDuplicateOnHomeResume": true
   },
   "networkSample": {
-    "downloadMbps": 56.5,
-    "uploadMbps": 42.9,
+    "downloadMbps": 45.5,
+    "uploadMbps": 39.4,
     "userReportedSameDeviceOoklaDownloadMbps": 52,
     "server": "Roma",
     "method": "LibreSpeed HTTPS, four parallel streams",

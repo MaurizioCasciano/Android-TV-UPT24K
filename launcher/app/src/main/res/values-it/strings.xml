@@ -175,9 +175,17 @@
     <string name="speed_measuring_down">Download · OK interrompi</string>
     <string name="speed_measuring_up">Upload · OK interrompi</string>
     <string name="speed_finished">%2$s %1$s · OK ripeti</string>
-    <string name="speed_ping">HTTP %1$s ms</string>
+    <string name="speed_ping">Ping %1$s ms</string>
     <string name="speed_jitter">Jitter %1$s ms</string>
     <string name="speed_description">Test rete LibreSpeed parallelo. Download %1$s megabit al secondo, upload %2$s megabit al secondo, ping HTTP %3$s millisecondi, jitter %4$s millisecondi. %5$s. OK avvia o interrompe il test.</string>
     <string name="speed_download_label">DOWNLOAD</string>
     <string name="speed_upload_label">UPLOAD</string>
+
+    <!-- Automatic foreground test and locally saved real measurements. -->
+    <string name="speed_wait_internet">Attendo Internet</string>
+    <string name="speed_auto_start">Avvio test · ≤42 MB</string>
+    <string name="speed_auto_wait">Test in attesa · OK avvia</string>
+    <string name="speed_saved">Ultima misura</string>
+    <string name="speed_last_result">Ultimo test %1$s</string>
+    <string name="speed_previous_during_update">%1$s · precedente</string>
 </resources>

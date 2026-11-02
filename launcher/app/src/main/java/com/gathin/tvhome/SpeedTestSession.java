@@ -1,6 +1,6 @@
 package com.gathin.tvhome;
 
-/** Main-thread ownership of a manual test; a paused or different network cannot receive a late result. */
+/** Main-thread ownership of a foreground test; a paused or different network cannot receive a late result. */
 final class SpeedTestSession {
     private String route = "";
     private long generation;

@@ -11,11 +11,14 @@ Versione funzionante
 - CPU con storico reale, RAM e disco dati in tre schede grafiche.
 - IP locale e pubblico, paese con bandiera e operatore; ipwho.is via HTTPS.
   Cache in memoria di cinque minuti, aggiornata mentre Home e visibile.
-- Download/upload, ping HTTP e jitter: test manuale LibreSpeed a quattro
+- Download/upload, ping HTTP e jitter: test LibreSpeed a quattro
   connessioni, server Roma/Francoforte selezionato per latenza HTTPS.
   Limite complessivo: 32 MiB download e 8 MiB upload (circa 42 MB di payload).
-  OK avvia/interrompe; uscire dalla Home annulla tutti i trasferimenti.
-  Risultati in memoria con orario, senza invio a servizi di telemetria.
+  Parte automaticamente con Internet validato mentre Home e visibile, con
+  deduplicazione per rete/avvio e un minuto minimo tra nuove reti. OK avvia o
+  interrompe; uscire dalla Home annulla tutti i trasferimenti.
+  L'ultimo risultato completato, orario e server sono salvati solo sul decoder;
+  sono indicati come precedenti durante l'aggiornamento, senza telemetria.
 
 Home e telecomando
 
@@ -58,12 +61,13 @@ Gli strumenti originali e le loro istruzioni sono in tools/.
 
 Verifiche dello snapshot
 
-330 test superati; lint senza errori; firma APK verificata.
-Prova reale della card sul decoder: 56,5 Mbps download e 42,9 Mbps upload,
-rispetto ai 52 Mbps download Ookla riferiti sul browser dello stesso decoder.
+341 test superati; lint senza errori; firma APK verificata.
+Il motore parallelo e stato confrontato sul decoder con Ookla (56,5 Mbps contro
+52 Mbps download riferiti). Il test automatico e la conservazione dei risultati
+sono stati verificati anche attraverso riavvio del processo e ritorno alla Home.
 Verificati navigazione D-pad, interruzione uscendo dalla Home e collegamento
 di HomeKeyService con key_filter=false. Le velocita sono campioni puntuali.
-APK personale: 609777 byte; supera il limite upstream di 589824 byte.
+APK personale: 613241 byte; supera il limite upstream di 589824 byte.
 Non costituisce una qualificazione della CI upstream.
 
 Materiali locali esclusi da Git
