@@ -82,7 +82,7 @@ The SDK, caches and signing keys are intentionally not in Git.
 ```sh
 git clone https://github.com/MaurizioCasciano/Android-TV-UPT24K.git
 cd Android-TV-UPT24K
-git switch upt24k-local
+git switch TELE-System-UPT24K
 cd launcher
 ./gradlew --no-daemon testReleaseUnitTest lintRelease assembleRelease
 ```
